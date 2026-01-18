@@ -45,8 +45,8 @@ def prueba_tablero_vacío():
     print(t, len(t))
 
 def prueba_simple():
-    mov_jugador_1 = {0:{0,2}, 1:{1}, 2:{2}}
-    mov_jugador_2 = {0:{1}, 1:{0,2}, 2:{0}}
+    mov_jugador_1 = {0:[0,2], 1:[1], 2:[2]}
+    mov_jugador_2 = {0:[1], 1:[0,2], 2:[0]}
     movimientos_jugadores=[mov_jugador_1, mov_jugador_2]
     n=3
 
@@ -91,6 +91,26 @@ def test_movimiento_incorrecto():
     x = 2
     y = 3
     assert movimiento_valido(x, y, movimientos_otro_jugador) == False
+
+def jugada_ganadora(movimientos_jugador):
+    """
+    Método que permite determinar si los movimientos de un jugador le permite ganar una partida.
+    Parámetros:
+    * movimientos_jugador: dict con el conjunto de movimientos de un jugador
+    """
+    #Comprobamos si hay 3 fichas en una fila
+    for fila in movimientos_jugador:
+        if len(movimientos_jugador[fila]) >= 3:
+            return True
+    return False
+
+def test_no_ganador():
+   movimientos_jugador={2:[2,3]}
+   assert False == jugada_ganadora(movimientos_jugador)
+
+def test_ganador():
+   movimientos_jugador={2:[1,2,3]}
+   assert True == jugada_ganadora(movimientos_jugador)
 
 prueba_tablero_vacío()
 prueba_simple()
