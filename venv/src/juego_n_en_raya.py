@@ -162,8 +162,8 @@ while casillas_libres > 0 and not end_game:
                             Introduce movimiento (x,y): ")
     # procesamos la entrada
     casilla_jugador= casilla_jugador.strip()
-    x= int(casilla_jugador.split(',')[0])-1
-    y= int(casilla_jugador.split(',')[1])-1
+    x= int(casilla_jugador.split(',')[0])
+    y= int(casilla_jugador.split(',')[1])
 
     print(casilla_jugador,x,y)
 
